@@ -2,7 +2,7 @@
 import Center from '@/app/components/Center'
 import { Copy , Send } from 'lucide-react'
 import Image from 'next/image'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { ReactElement, useEffect, useRef, useState } from 'react'
 import img from "@/public/movie.png"
 import Message from '@/app/components/Message'
 import { toast } from 'react-toastify'
@@ -40,7 +40,7 @@ const page = () => {
   }
   const { messages, sendMessage ,videoLink , sendVideo , IsPlaying } = useSignalR(room);
 
-  const containerRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (containerRef.current) {
