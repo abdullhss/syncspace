@@ -12,6 +12,7 @@ import { use } from "react";
 import { useLogin } from '@/app/contexts/LoginProvider'
 import { useSignalR } from '@/app/hooks/useSignalR'
 import ReactPlayer from "react-player";
+import { useParams } from 'next/navigation'
 
 interface RoomPageProps {
   params: { room: string };
@@ -25,7 +26,7 @@ interface Room{
 const API = process.env.NEXT_PUBLIC_API ;
 
 const page = ({ params }: RoomPageProps) => {
-  const { room } = params;
+  const { room } = useParams<{ room: string }>();
   const {username} = useLogin() ;
   const [RoomDetails , setRoomDetails ] = useState<Room >({roomId : "" ,  roomName :"", roomParticipants:[]}); 
   const [Link , setLink] = useState<string>("") ; 
