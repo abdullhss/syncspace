@@ -10,27 +10,28 @@ import Link from 'next/link';
 import axiosInstance from '../axiosInstance';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
+import { SubmitHandler } from 'react-hook-form';
 
 const API = process.env.NEXT_PUBLIC_API ;
 
-interface joinForm {
-  id : string 
-}
-const page = () => {
 
-  const formSchema = z.object({
-      id: z.string().min(1, "room id is required"),
-    });
-    const router = useRouter() ; 
-    const {
-      register,
-      handleSubmit,
-      formState: { errors },
-    } = useForm({
-      resolver: zodResolver(formSchema),
-    });
+const page = () => {
   
-    const onSubmit = async (data : joinForm ) => {
+  const formSchema = z.object({
+    id: z.string().min(1, "room id is required"),
+  });
+  type FormData = z.infer<typeof formSchema>;
+
+  const router = useRouter() ; 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: zodResolver(formSchema),
+  });
+    
+    const onSubmit: SubmitHandler<FormData> = async (data) => {
       const target = `${API}/Room/${data.id}/join`
       try{
         const response = await axiosInstance.post(target , {
