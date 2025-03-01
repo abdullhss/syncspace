@@ -25,7 +25,7 @@ interface Room{
 const API = process.env.NEXT_PUBLIC_API ;
 
 const page = ({ params }: RoomPageProps) => {
-  const {room} = use(params);
+  const { room } = params;
   const {username} = useLogin() ;
   const [RoomDetails , setRoomDetails ] = useState<Room >({roomId : "" ,  roomName :"", roomParticipants:[]}); 
   const [Link , setLink] = useState<string>("") ; 
