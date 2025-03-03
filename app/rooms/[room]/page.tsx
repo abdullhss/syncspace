@@ -38,7 +38,7 @@ const page = () => {
     const response = await axiosInstance.get(`${API}/room/${room}`);
     setRoomDetails(response.data.result)
   }
-  const { messages, sendMessage ,videoLink , sendVideo , IsPlaying } = useSignalR(room);
+  const { messages, sendMessage ,videoLink , sendVideo , IsPlaying, ReactPlayerRef,handleStateChange ,handleSeek} = useSignalR(room);
 
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -78,10 +78,14 @@ const page = () => {
 
       <Center className=' md:h-[85vh] px-4 py-8 flex flex-col md:flex-row items-center gap-4 justify-around' col={false}>
           {/* video container */}
-          <div className='w-[100%] h-[30vh] md:w-[60%] md:h-full bg-black rounded-lg'>
+          <div className='w-[100%] h-[30vh] md:w-[60%] md:h-full bg-indigo-800/60 rounded-lg'>
             <ReactPlayer
+              ref={ReactPlayerRef}
               url={videoLink || ""}
               playing={IsPlaying}
+              onPause={()=>{handleStateChange(true)}}
+              onPlay={()=>{handleStateChange(false)}}
+              onSeek={(seconds) => handleSeek(seconds)}
               width="100%"
               height="100%"
               controls
@@ -108,14 +112,18 @@ const page = () => {
                 }
               </div>
               
-              <div className=' w-full h-[10%] flex text-white items-center justify-center'>
-                <input value={inputMessage} onChange={(e)=>{setInputMessage(e.target.value)}} type="text" className='px-1 bg-transparent border w-[85%] rounded-l-xl outline-none'/>
-                <button onClick={()=>{
+              <form
+                onSubmit={(e)=>{
+                  e.preventDefault() ;
                   sendMessage(inputMessage)
-                }} className='border border-gray-600 rounded-r-xl w-[10%] flex justify-center bg-gray-600'>
+                  setInputMessage("")
+                }}
+                className=' w-full h-[10%] flex text-white items-center justify-center'>
+                <input value={inputMessage} onChange={(e)=>{setInputMessage(e.target.value)}} type="text" className='px-1 bg-transparent border w-[85%] rounded-l-xl outline-none'/>
+                <button type='submit' className='border border-gray-600 rounded-r-xl w-[10%] flex justify-center bg-gray-600'>
                   <Send className='w-5'/>
                 </button>
-              </div>
+              </form>
           </div>
       </Center>
     </>
