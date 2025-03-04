@@ -17,8 +17,12 @@ export default function page() {
         firstName: z.string().min(1, "First name is required"),
         lastName: z.string().min(1, "Last name is required"),
         Email: z.string().email("enter valid email"),
-        password: z.string().min(8 , "Password must be at least 8 characters and has spichal character , capital and small "),
-      });
+        password:z.string()
+        .min(8, "Password must be at least 8 characters")
+        .regex(/[A-Z]/, "Password must contain at least one uppercase letter")
+        .regex(/[a-z]/, "Password must contain at least one lowercase letter")
+        .regex(/[\W_]/, "Password must contain at least one special character")
+    });
 
       const {
         register,

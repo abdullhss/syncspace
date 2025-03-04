@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["syncspace.runasp.net"],
+    domains: ["syncspace2.runasp.net"],
   },
 };
 

@@ -139,8 +139,6 @@ export const useSignalR = (roomId: string) => {
       }
   };
 
-
-
   const handleSeek = (seconds : any) => {
     if(connection){
       connection
