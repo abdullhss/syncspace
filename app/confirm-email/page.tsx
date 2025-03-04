@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import axiosInstance from '../axiosInstance';
 import { toast } from 'react-toastify';
 import { Loader } from 'lucide-react';
+import { Suspense } from "react";
 
 const Page = () => {
     const searchParams = useSearchParams();
@@ -26,10 +27,9 @@ const Page = () => {
     }, [userId, code]);
 
     return (
-        <div className='min-h-screen flex items-center justify-center'>
-            <h1 className='text-white'>testtttttttt</h1>
-            <Loader className='text-white bg-white w-8 h-8 animate-spin'/>
-        </div>
+        <Suspense fallback={<div className='min-h-screen flex items-center justify-center'> <Loader className='w-8 h-8 animate-spin'/> </div>}>
+            
+        </Suspense>
     );
 }
 
