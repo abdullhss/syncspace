@@ -70,7 +70,7 @@ const page = () => {
       
       <div className='px-5 flex items-center justify-center mt-4 text-white'>
         <input type="text"
-        className='w-[50%] bg-transparent py-1 border-2 border-r-0 border-white outline-none rounded-l-md'
+        className='w-[50%] bg-gray-700/80 py-1 border-2 border-r-0 border-white outline-none rounded-l-md'
         onChange={(e)=>{setLink(e.target.value)}}
         />
         <button className='BGGradient px-6 py-1 border-white border-2 border-l-0 rounded-r-md' onClick={()=>{sendVideo(Link)}} > Play</button>
@@ -78,7 +78,7 @@ const page = () => {
 
       <Center className=' md:h-[85vh] px-4 py-8 flex flex-col md:flex-row items-center gap-4 justify-around' col={false}>
           {/* video container */}
-          <div className='w-[100%] h-[30vh] md:w-[60%] md:h-full bg-indigo-800/60 rounded-lg'>
+          <div className='w-[100%] h-[30vh] md:w-[60%] md:h-full bg-indigo-800/60 rounded-lg border border-white '>
             <ReactPlayer
               ref={ReactPlayerRef}
               url={videoLink || ""}
@@ -91,8 +91,8 @@ const page = () => {
               controls
             />
           </div>
-          <div className='h-[50vh] w-full md:w-[35%] py-2 md:h-full bg-black/50 rounded-lg'>
-            <div ref={containerRef} className="w-full px-2 space-y-2 h-[90%] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-300">
+          <div className='h-[50vh] w-full md:w-[35%] py-2 md:h-full bg-black/50 rounded-lg '>
+            <div ref={containerRef} className="w-full px-2 space-y-2 h-[90%] overflow-y-auto scrollbar-thin scrollbar-track-black scrollbar-thumb-fuchsia-600">
                 {
                   messages?.map((message , i)=>{
                   message.content
@@ -120,7 +120,7 @@ const page = () => {
                 }}
                 className=' w-full h-[10%] flex text-white items-center justify-center'>
                 <input value={inputMessage} onChange={(e)=>{setInputMessage(e.target.value)}} type="text" className='px-1 bg-transparent border w-[85%] rounded-l-xl outline-none'/>
-                <button type='submit' className='border border-gray-600 rounded-r-xl w-[10%] flex justify-center bg-gray-600'>
+                <button type='submit' className='border border-gray-600 rounded-r-xl w-[10%] flex justify-center BGGradient'>
                   <Send className='w-5'/>
                 </button>
               </form>
