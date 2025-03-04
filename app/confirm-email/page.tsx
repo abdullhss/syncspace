@@ -14,10 +14,12 @@ const ConfirmEmailContent = () => {
     useEffect(() => {
         if (!userId || !code) return;
 
+        console.log(userId);
+        console.log(code);
         axiosInstance.get(`${process.env.NEXT_PUBLIC_API}/auth/confirmEmail?UserId=${userId}&Code=${code}`)
             .then(() => {
                 toast.success("Email activated!");
-                router.push("/login"); // 🔥 استخدم useRouter بدل redirect()
+                router.push("/login");
             })
             .catch((error) => {
                 console.log(error);
