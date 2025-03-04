@@ -53,7 +53,9 @@ export default function page() {
                 })
             })
             .catch((error) => {
-                toast.error("there is problem Now try later", {
+                console.log(error.response.data.errors[0]);
+                
+                toast.error(error.response.data.errors[0], {
                 position: "top-right",
                 autoClose: 3000,
                 hideProgressBar: false,

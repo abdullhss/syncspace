@@ -64,6 +64,8 @@ export default function page() {
             router.push("/home")
           })
           .catch((error) => {
+            console.log(error.response.data.errors[0]);
+            
             toast.error("Email or password is not correct", {
               position: "top-right",
               autoClose: 3000,
