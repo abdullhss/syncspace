@@ -35,7 +35,7 @@ const ConfirmEmailContent = () => {
 
 const Page = () => {
     return (
-        <Suspense fallback={<div className='min-h-screen flex items-center justify-center'> <Loader className='w-8 h-8 animate-spin'/> </div>}>
+        <Suspense fallback={<div className='min-h-[50vh] flex items-center justify-center'> <Loader color='white' className='w-8 h-8 animate-spin'/> </div>}>
             <ConfirmEmailContent />
         </Suspense>
     );
