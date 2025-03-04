@@ -93,7 +93,7 @@ export default function page() {
     >
     <div
         style={{
-        backgroundColor: "rgba(0, 0, 0, 0.75)",
+        backgroundColor: "rgba(0, 0, 0, 0.55)",
         position: "absolute",
         top: 0,
         left: 0,
@@ -108,7 +108,7 @@ export default function page() {
             <p className="text-white ">Login Now </p>
             <form
             onSubmit={handleSubmit(onSubmit)}
-            className=" max-w-xl mx-auto p-8 space-y-4 border rounded-lg shadow w-full "
+            className=" max-w-xl mx-auto p-8 space-y-4 w-full bg-white/15 backdrop-blur-xl rounded-lg border border-white/20 shadow-lg"
             >
 
             {/* Email */}
