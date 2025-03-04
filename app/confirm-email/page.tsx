@@ -27,6 +27,7 @@ const Page = () => {
 
     return (
         <div className='min-h-screen flex items-center justify-center'>
+            <h1 className='text-white'>testtttttttt</h1>
             <Loader className='text-white bg-white w-8 h-8 animate-spin'/>
         </div>
     );
