@@ -1,27 +1,35 @@
 "use client"
-import { useParams } from 'next/navigation';
-import React, { useEffect } from 'react'
+import { redirect, useSearchParams } from 'next/navigation';
+import React, { useEffect } from 'react';
 import axiosInstance from '../axiosInstance';
 import { toast } from 'react-toastify';
-import { error } from 'console';
+import { Loader } from 'lucide-react';
 
-const page = () => {
-    const { userId ,code } = useParams<{ userId:string , code:string }>();
+const Page = () => {
+    const searchParams = useSearchParams();
+    const userId = searchParams.get("userId");
+    const code = searchParams.get("code");
 
-    console.log(userId , code);
+    console.log(userId, code);
     
-    useEffect(()=>{
-        axiosInstance.get(`${process.env.NEXT_PUBLIC_API}/auth/confirmEmail?UserId=${userId}&Code=${code}`).then(()=>{
-            toast.success("email activated !")
-        }).catch((error)=>{
-            console.log(error);
-        })
-    })
-  return (
-    <div>
-      
-    </div>
-  )
+    useEffect(() => {
+        if (!userId || !code) return;
+
+        axiosInstance.get(`${process.env.NEXT_PUBLIC_API}/auth/confirmEmail?UserId=${userId}&Code=${code}`)
+            .then(() => {
+                toast.success("Email activated!");
+                redirect("/login");
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, [userId, code]);
+
+    return (
+        <div className='min-h-screen flex items-center justify-center'>
+            <Loader className='text-white bg-white w-8 h-8 animate-spin'/>
+        </div>
+    );
 }
 
-export default page
+export default Page;
